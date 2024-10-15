@@ -65,9 +65,9 @@ data_table1 <- data_table
 data_table1[compared_group] <- factor(data_table1 %>% pull(eval(parse(text = compared_group))),levels = c(compared_levels,Inf),labels = c(compared_labels,"P-value"))
 data_table1 <- data_table1[!is.na(data_table1 %>% pull(eval(parse(text = compared_group)))),]
 ```
-－　為了保留原始檔以便後續確認，我們會新建一個一模一樣的檔案，以新的檔案來執行分析。
-－　在data_table1資料檔中，增加一行"compared_group"
-－　刪除NA值
+* 為了保留原始檔以便後續確認，我們會新建一個一模一樣的檔案，以新的檔案來執行分析。
+* 在data_table1資料檔中，增加一行"compared_group"
+* 刪除NA值
 
 ```{r}
 p_value <- function(x, ...) {
