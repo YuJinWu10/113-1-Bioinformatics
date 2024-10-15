@@ -111,4 +111,4 @@ tb1 <- colnames(data_table1) %>%
          extra.col = list(`P-value` = p_value))
 ```
 －　生成Table1，可以進行分析
-![Table1](https://github.com/user-attachments/assets/d11c0f9e-5506-42e6-aef3-39fd6cb7138e)
+
