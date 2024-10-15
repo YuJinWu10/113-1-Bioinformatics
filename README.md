@@ -93,9 +93,9 @@ my.render.cont <- function(x) {
 ```
 - 建立一個p_value函數，依數據的類型，使用不同方式得到p_value
   
--  數值型數據：使用wilcox.test來檢測兩組數據是否來自相同的分佈
--  2x2列聯表行數據：使用exact.test進行準確性檢驗
--  其他類型的數據：使用GTest進行似然比檢驗，並應用"Williams校正"來計算p值
+  -  數值型數據：使用wilcox.test來檢測兩組數據是否來自相同的分佈
+  -  2x2列聯表行數據：使用exact.test進行準確性檢驗
+  -  其他類型的數據：使用GTest進行似然比檢驗，並應用"Williams校正"來計算p值
 
 ##  table 1
 
