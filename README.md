@@ -47,7 +47,7 @@ data_table <- metadata %>%
   )
 
 ```
-這邊我們補充說明變數名稱
+－　－　這邊我們補充說明變數名稱
 
 
 ## Select the variables that you want to compare
@@ -66,6 +66,8 @@ data_table1[compared_group] <- factor(data_table1 %>% pull(eval(parse(text = com
 data_table1 <- data_table1[!is.na(data_table1 %>% pull(eval(parse(text = compared_group)))),]
 ```
 －　為了保留原始檔以便後續確認，我們會新建一個一模一樣的檔案，以新的檔案來執行分析。
+－　在data_table1資料檔中，增加一行"compared_group"
+－　刪除NA值
 
 ```{r}
 p_value <- function(x, ...) {
@@ -89,6 +91,10 @@ my.render.cont <- function(x) {
 }
 
 ```
+- 建立一個p_value函數，依數據的類型，使用不同方式得到p_value
+  -  數值型數據：使用wilcox.test來檢測兩組數據是否來自相同的分佈
+  -  2x2列聯表行數據：使用exact.test進行準確性檢驗
+  -  其他類型的數據：使用GTest進行似然比檢驗，並應用"Williams校正"來計算p值
 
 ##  table 1
 
@@ -102,7 +108,5 @@ tb1 <- colnames(data_table1) %>%
          overall = F, 
          render.continuous = my.render.cont,
          extra.col = list(`P-value` = p_value))
-tb1
-
 ```
-
+－　生成Table1，可以進行分析
