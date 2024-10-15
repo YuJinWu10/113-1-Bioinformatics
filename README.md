@@ -1,34 +1,13 @@
 # 113-1-Bioinformatics
 
----
-title: "Bioinformatics table1"
-author: "Yu-Jin Wu"
-date: "`r Sys.Date()`"
-output:
-  html_document:
-    code_folding: hide
-    toc: yes
-    toc_depth: 2
-    toc_float:
-      collapsed: no
-      smooth_scroll: no
-  pdf_document:
-    toc: yes
-    toc_depth: '2'
-  word_document:
-    toc: yes
-    toc_depth: '2'
-
----
-
-# Install the required packages
+## Install the required packages
 
 
 ```{r}
 # install.packages(c("dplyr", "table1", "Hmisc", "Exact", "DescTools"))
 ```
 
-# Library the required packages
+## Library the required packages
 ```{r}
 library(dplyr)
 library(table1)
@@ -37,7 +16,7 @@ library(Exact)
 library(DescTools)
 ```
 
-# Import dataset 
+## Import dataset 
 
 ```{r}
 setwd("D:/yuyu/master/113-1/TA/113-1 Bioinformatics/Final")
@@ -48,7 +27,7 @@ metadata <- read.table("phyloseq/weis_metadata_1210.tsv", sep = "\t", header = T
 ```
 
 
-# Specific Variables
+## Specific Variables
 ```{r}
 # colnames(metadata) ## What variables are in metadata
 ```
@@ -70,7 +49,7 @@ data_table <- metadata %>%
 ```
 
 
-# Select the variables that you want to compare
+## Select the variables that you want to compare
 ```{r}
 compared_group <- "Entacapone"
 compared_levels <- c("yes", "no")
@@ -107,7 +86,7 @@ my.render.cont <- function(x) {
 
 ```
 
-#  table 1
+##  table 1
 
 ```{r}
 tb1 <- colnames(data_table1) %>%
