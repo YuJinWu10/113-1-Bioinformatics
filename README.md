@@ -47,7 +47,7 @@ data_table <- metadata %>%
   )
 
 ```
-
+補充說明變數名稱
 
 ## Select the variables that you want to compare
 ```{r}
@@ -55,13 +55,15 @@ compared_group <- "Entacapone"
 compared_levels <- c("yes", "no")
 compared_labels <- c("Yes", "No")
 ```
+這邊舉例的是對"Entacapone"做分組比較，分成兩組 "yes", "no" ，而我們希望它的組別以"Yes", "No"呈現
+
 
 ```{r}
 data_table1 <- data_table
 data_table1[compared_group] <- factor(data_table1 %>% pull(eval(parse(text = compared_group))),levels = c(compared_levels,Inf),labels = c(compared_labels,"P-value"))
 data_table1 <- data_table1[!is.na(data_table1 %>% pull(eval(parse(text = compared_group)))),]
 ```
-
+為了保留原始檔以便後續確認，我們會新建一個一模一樣的檔案，以新的檔案來執行分析。
 
 ```{r}
 p_value <- function(x, ...) {
