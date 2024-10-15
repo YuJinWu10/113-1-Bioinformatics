@@ -91,7 +91,7 @@ my.render.cont <- function(x) {
 }
 
 ```
-* 建立一個p_value函數，依數據的類型，使用不同方式得到p_value
+- 建立一個p_value函數，依數據的類型，使用不同方式得到p_value
   
 -  數值型數據：使用wilcox.test來檢測兩組數據是否來自相同的分佈
 -  2x2列聯表行數據：使用exact.test進行準確性檢驗
