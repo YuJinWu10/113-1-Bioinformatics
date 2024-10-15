@@ -47,7 +47,7 @@ data_table <- metadata %>%
   )
 
 ```
-－　－　這邊我們補充說明變數名稱
+－ 這邊我們補充說明變數名稱
 
 
 ## Select the variables that you want to compare
