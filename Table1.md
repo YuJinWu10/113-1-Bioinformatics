@@ -17,13 +17,15 @@ library(DescTools)
 ## Import dataset 
 
 ```{r}
+# (Method 1)
 setwd("D:/yuyu/master/113-1/TA/113-1 Bioinformatics/Final")
 metadata <- read.table("phyloseq/weis_metadata_1210.tsv", sep = "\t", header = TRUE)
 
 # (Method 2) 
 # metadata <- read.table("D:/yuyu/master/113-1/TA/113-1 Bioinformatics/Final/phyloseq/weis_metadata_1210.tsv", sep = "\t", header = TRUE)
 ```
-
+- 方法一：先指定路徑，之後只需要輸入檔案名稱即可。
+- 方法二：直接輸入檔案路徑取得檔案。
 
 ## Specific Variables
 ```{r}
@@ -45,7 +47,7 @@ data_table <- metadata %>%
   )
 
 ```
-－ 這邊我們補充說明變數名稱
+－ 補充說明變數名稱
 
 
 ## Select the variables that you want to compare
