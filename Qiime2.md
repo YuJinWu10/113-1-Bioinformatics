@@ -42,6 +42,12 @@ ps <- MicrobiotaProcess::import_qiime2(otuqza = otu,
 
 
 # alpha diversity
+- alpha diversity是指在單一樣本或區域內的物種豐富度和多樣性。它衡量的是單一樣本內物種的多樣性，常見的指標有Observed, Chao1, Shannon, Simpson
+  - Observed：實際觀察到的物種數量
+  - Chao1：基於物種豐富度的估計，考慮到未被觀察到的稀有物種。
+  - Shannon：基於物種的數量和均勻度計算多樣性，值越大表示多樣性越高。
+  - Simpson：另一種多樣性指標，值越接近1，表示多樣性越高。
+    
 ## alpha diversity plot: Observed, Chao1, Shannon, Simpson
 ```{r}
 alphaobj <- get_alphaindex(ps) %>% as.data.frame
@@ -60,6 +66,8 @@ alphaobj %>%
   scale_x_discrete(labels = element_blank(), name = "") +
   scale_fill_manual("Entacapone", values=c("#E69F00", "#0072B2")) 
 ```
+- 生成了Alpha diversity測量的數據框alphaobj，並將「Observe」變量重新命名為「Observed」。
+- 將多個Alpha diversity指標（Observed, Chao1, Shannon, Simpson）轉換為長格式，並生成盒狀圖比較不同樣本群組（Entacapone）下的多樣性。
 
 
 ## exact wilcoxon test for alpha diversity
@@ -74,9 +82,18 @@ colnames(alpha_diversity) <- metric
 rownames(alpha_diversity) <- "p.value"
 alpha_diversity
 ```
-
+ - 透過wilcox test進行每個Alpha diversity指標的Wilcoxon秩和檢驗，並返回p-value，這部分用來比較兩個群組在每個指標上的顯著性差異。
 
 # beta diversity
+- Beta Diversity是描述不同樣本或群落之間的物種差異，表示不同群落之間的多樣性差異。常見的指標有canberra, unweighted Unifraca, weighted Unifrac
+  -  Canberra 距離：基於兩個樣本中物種豐富度的距離衡量。
+  -  Unifrac（Unweighted 和 Weighted）：基於系統發生樹（phylogenetic tree）計算的樣本之間的差異。Unweighted Unifrac距離只考慮是否存在物種，而 Weighted Unifrac距離會考慮物種的豐富度。
+(生成三個不同距離度量的PCoA圖（主坐標分析圖），這些圖用來可視化群組之間的Beta多樣性差異，每個PCoA圖都顯示了樣本在兩個主坐標軸上的分佈，並且透過橢圓形來描繪群組的分佈範圍)
+
+- Alpha Diversity 和 Beta Diversity 的比較：
+  - Alpha Diversity 專注於單一樣本內的多樣性，通常用來衡量群落內的物種豐富度和均勻性。如果你想知道某個樣本內有多少不同的物種，以及這些物種分佈是否均勻，Alpha Diversity 是適合的指標。
+  - Beta Diversity 則是用來比較不同樣本之間的物種組成差異。它更多的是比較兩個或多個樣本群落之間的多樣性變化，從而反映它們的相似性或差異。
+
 ## beta diversity plot: canberra
 ```{r}
 pcoa_canberra <- get_pcoa(obj = ps, 
@@ -128,6 +145,7 @@ ggplot(beta_weighted_unifrac, aes(x = Axis.1, y = Axis.2, color = Entacapone)) +
 
 
 ## PERMANOVA test for beta diversity
+- 使用adonis2進行PERMANOVA（基於距離矩陣的方差分析）來比較不同群組之間的Beta diversity顯著性，並生成p-value。
 ```{r}
 metric <- c("canberra", "unweighted-UniFrac", "weighted-UniFrac")
 beta_diversity <- data.frame()
@@ -143,3 +161,6 @@ colnames(beta_diversity) <- metric
 rownames(beta_diversity) <- "p.value"
 beta_diversity
 ```
+
+- Alpha Diversity 強調的是單個樣本內的多樣性，可以用於測量每個樣本群落的物種豐富度和均勻性。
+- Beta Diversity 則比較不同樣本之間的物種差異，測量樣本之間的群落變異性。
