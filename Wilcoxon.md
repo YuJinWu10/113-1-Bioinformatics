@@ -194,7 +194,7 @@ result %>%
 # Wilcoxon in Genus level
 ## prepare data
 ```{r}
-setwd("D:/yuyu/master/113-1/TA/113-1 Bioinformatics/TA_bioinfor_113")
+setwd("D:/yuyu/master/113-1/TA/113-1 Bioinformatics/Final")
 otug <- "phyloseq/rel-genus-table.qza"
 metadata <- read.table("phyloseq/weis_metadata_1210.tsv", sep = "\t", header = TRUE)
 
