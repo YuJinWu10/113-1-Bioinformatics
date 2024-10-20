@@ -68,6 +68,7 @@ alphaobj %>%
 ```
 - 生成了Alpha diversity測量的數據框alphaobj，並將「Observe」變量重新命名為「Observed」。
 - 將多個Alpha diversity指標（Observed, Chao1, Shannon, Simpson）轉換為長格式，並生成盒狀圖比較不同樣本群組（Entacapone）下的多樣性。
+- fill='你想要比對的變數名稱'
 
 
 ## exact wilcoxon test for alpha diversity
@@ -83,6 +84,8 @@ rownames(alpha_diversity) <- "p.value"
 alpha_diversity
 ```
  - 透過wilcox test進行每個Alpha diversity指標的Wilcoxon秩和檢驗，並返回p-value，這部分用來比較兩個群組在每個指標上的顯著性差異。
+
+ - 結論：P-value都大於0.05，也就是說對我們總體來說有服用Entacapone跟沒有服用Entacapone的帕金氏斯症患者中沒有太大的差異性，不管是它的豐富度還是
 
 # beta diversity
 - Beta Diversity是描述不同樣本或群落之間的物種差異，表示不同群落之間的多樣性差異。常見的指標有canberra, unweighted Unifraca, weighted Unifrac
