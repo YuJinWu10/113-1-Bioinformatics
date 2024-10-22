@@ -148,6 +148,7 @@ ggplot(beta_weighted_unifrac, aes(x = Axis.1, y = Axis.2, color = Entacapone)) +
 
 
 ## PERMANOVA test for beta diversity
+- PERMANOVA : Permutational analysis of variance
 - 使用adonis2進行PERMANOVA（基於距離矩陣的方差分析）來比較不同群組之間的Beta diversity顯著性，並生成p-value。
 ```{r}
 metric <- c("canberra", "unweighted-UniFrac", "weighted-UniFrac")
