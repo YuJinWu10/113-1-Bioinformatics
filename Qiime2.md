@@ -89,7 +89,7 @@ alpha_diversity
 
 # beta diversity
 - Beta Diversity是描述不同樣本或群落之間的物種差異，表示不同群落之間的多樣性差異。常見的指標有canberra, unweighted Unifraca, weighted Unifrac
-  -  Canberra 距離：基於兩個樣本中物種豐富度的距離衡量。
+  -  Canberra 距離：衡量兩個樣本中物種豐富度的差異。
   -  Unifrac（Unweighted 和 Weighted）：基於系統發生樹（phylogenetic tree）計算的樣本之間的差異。Unweighted Unifrac距離只考慮是否存在物種，而 Weighted Unifrac距離會考慮物種的豐富度。
 (生成三個不同距離度量的PCoA圖（主坐標分析圖），這些圖用來可視化群組之間的Beta多樣性差異，每個PCoA圖都顯示了樣本在兩個主坐標軸上的分佈，並且透過橢圓形來描繪群組的分佈範圍)
 
@@ -147,7 +147,7 @@ ggplot(beta_weighted_unifrac, aes(x = Axis.1, y = Axis.2, color = Entacapone)) +
 ```
 
 
-## PERMANOVA test for beta diversity
+## PERMANOVA test for beta diversity(Calculate p-values)
 - PERMANOVA : Permutational analysis of variance
 - 使用adonis2進行PERMANOVA（基於距離矩陣的方差分析）來比較不同群組之間的Beta diversity顯著性，並生成p-value。
 ```{r}
