@@ -101,7 +101,7 @@ my.render.cont <- function(x) {
   -   如果 p-value 小於 0.05，則我們可以認為這個差異具有統計顯著性，意味著兩組在這個變數上的差異並非隨機產生的，有可能是真實存在的。
   -   如果 p-value 大於 0.05，則表示該變數在兩組之間的差異不具統計顯著性。
 
-##  table 1
+##  Table 1
 
 ```{r}
 tb1 <- colnames(data_table1) %>%
@@ -114,7 +114,6 @@ tb1 <- colnames(data_table1) %>%
          render.continuous = my.render.cont,
          extra.col = list(`P-value` = p_value))
 ```
-- 生成Table1，可以進行分析
 
 - 這個Table的目的是比較這兩組患者在不同變數上的統計差異，並附上 p-value，以便評估每個變數在兩組之間是否存在顯著的差異。
 
