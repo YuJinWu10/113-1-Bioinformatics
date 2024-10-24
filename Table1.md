@@ -111,4 +111,4 @@ tb1 <- colnames(data_table1) %>%
          extra.col = list(`P-value` = p_value))
 ```
 －　生成Table1，可以進行分析
-
+－　我們會希望Table1上的p-value皆大於0.05，因為p-value皆大於0.05代表的是沒有顯著影響，也就是說
