@@ -1,3 +1,5 @@
+為了研究服用Entacapone是否與腸道菌群結構的變化相關，我們進行多樣性分析，這邊我們做Alpha diversity和Beta Diversity，
+
 # Install the required packages
 ```{r}
 #if (!requireNamespace("BiocManager", quietly = TRUE)) install.packages("BiocManager")
@@ -83,9 +85,9 @@ colnames(alpha_diversity) <- metric
 rownames(alpha_diversity) <- "p.value"
 alpha_diversity
 ```
- - 透過wilcox test進行每個Alpha diversity指標的Wilcoxon秩和檢驗，並返回p-value，這部分用來比較兩個群組在每個指標上的顯著性差異。
-
- - 結論：P-value都大於0.05，也就是說對我們總體來說有服用Entacapone跟沒有服用Entacapone的帕金氏斯症患者中沒有太大的差異性，不管是它的豐富度還是
+ - 透過wilcoxon test進行每個Alpha diversity指標的Wilcoxon秩和檢驗，並返回p-value，這部分用來比較兩個群組在每個指標上的顯著性差異。
+ - Alpha diversity四個指標（Observed, Chao1, Shannon, Simpson）的P-value都大於0.05，也就是說Alpha diversity四個指標（Observed, Chao1, Shannon, Simpson）在服用Entacapone和未有服用Entacapone的患者之間沒有發現統計上顯著差異（pObserved = 0.6223937；pChao1 = 0.4689388；pShannon = 0.5429662；pSimpson = 0.3106355） 。
+ - 不管是它的豐富度還是均勻度
 
 # beta diversity
 - Beta Diversity是描述不同樣本或群落之間的物種差異，表示不同群落之間的多樣性差異。常見的指標有canberra, unweighted Unifraca, weighted Unifrac
@@ -165,6 +167,8 @@ colnames(beta_diversity) <- metric
 rownames(beta_diversity) <- "p.value"
 beta_diversity
 ```
+-Beta Diversity 的三個指標中的兩個（canberra距離和加權Unifrac距離）顯示服用Entacapone和未有服用Entacapone的患者之間的群落結構發生顯著變化（pCanberra = 0.0371 ； pUnweighted-unifrac = 0.1859；pweighted-unifrac = 0.0048)。
+
 
 - Alpha Diversity 強調的是單個樣本內的多樣性，可以用於測量每個樣本群落的物種豐富度和均勻性。
 - Beta Diversity 則比較不同樣本之間的物種差異，測量樣本之間的群落變異性。
