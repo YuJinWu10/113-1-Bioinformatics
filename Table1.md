@@ -106,7 +106,7 @@ my.render.cont <- function(x) {
 
 
 ##  Table 1
-
+為了了解 PD 組有無服用Entacapone是否與性別、年齡、抽菸與否等等的一般特徵相關，我們比較了 PD 組中有服用Entacapone ( N  = 11) 和未服用Entacapone ( N  = 13) 患者的幾個特徵。
 ```{r}
 tb1 <- colnames(data_table1) %>%
   .[. != gsub("`", "", compared_group)] %>%
@@ -119,7 +119,6 @@ tb1 <- colnames(data_table1) %>%
          extra.col = list(`P-value` = p_value))
 ```
 
-- 這個Table的目的是比較這兩組 (Yes / No)患者在他們一般特徵（性別、年齡、抽菸情況等）上的統計差異，並附上 p-value，以便評估每個變數在兩組之間是否存在顯著的差異。
-- 我們會希望Table1上的p-value皆大於0.05，因為p-value皆大於0.05代表兩組 (Yes / No) 之間[有或沒有服用 Entacapone 的患者之間]，在這些特徵（性別、年齡、抽菸情況等）上是沒有統計上的顯著差異。
-- 在統計上沒有顯著地差異意味著我們需要更多數據或其他更靈敏的變數來評估 Entacapone 的影響。
+- 計算 p-value，以便評估每個變數在兩組之間是否存在顯著的差異。
+- 我們得到的Table1上的p-value皆大於0.05，代表兩組 (Yes / No) 之間，在這些特徵（性別、年齡、抽菸情況等）上是沒有統計上的顯著差異。
 
