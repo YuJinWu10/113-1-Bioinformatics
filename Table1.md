@@ -1,9 +1,11 @@
+
+
+
 ## Install the required packages
-
-
 ```{r}
 # install.packages(c("dplyr", "table1", "Hmisc", "Exact", "DescTools"))
 ```
+- 下載所需的package
 
 ## Library the required packages
 ```{r}
@@ -14,8 +16,8 @@ library(Exact)
 library(DescTools)
 ```
 
-## Import dataset 
 
+## Import dataset 
 ```{r}
 # (Method 1)
 setwd("D:/yuyu/master/113-1/TA/113-1 Bioinformatics/Final")
@@ -69,6 +71,7 @@ data_table1 <- data_table1[!is.na(data_table1 %>% pull(eval(parse(text = compare
 * 在data_table1資料檔中，增加一行"compared_group"
 * 刪除NA值
 
+
 ```{r}
 p_value <- function(x, ...) {
   #x <- x[-which(names(x) == "overall")]
@@ -100,6 +103,7 @@ my.render.cont <- function(x) {
 - p-value是一個統計指標，用來評估觀察到的差異是否只由隨機變異所造成的。
   -   如果 p-value 小於 0.05，則我們可以認為這個差異具有統計顯著性，意味著兩組在這個變數上的差異並非隨機產生的，有可能是真實存在的。
   -   如果 p-value 大於 0.05，則表示該變數在兩組之間的差異不具統計顯著性。
+
 
 ##  Table 1
 
