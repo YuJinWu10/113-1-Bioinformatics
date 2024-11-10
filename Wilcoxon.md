@@ -1,3 +1,7 @@
+差異豐富度分析判斷兩個組別的豐富度是否有差異，哪些菌有顯著增加?哪些菌有顯著減少?
+我們這邊用兩組不同檢定方式的Volcano plot
+為了確定與服用Entacapone相關的關鍵腸道菌，對服用Entacapone和未服用Entacapone患者之間的微生物相對豐富度差異進行了比較
+
 # Library the required packages
 ```{r}
 library(phyloseq)
