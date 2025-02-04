@@ -161,9 +161,6 @@ Fisher’s Exact Test 是一種 統計檢定方法，用於檢測 兩個分類�
 
 #### 2. 2×2 列聯表範例
 假設研究某種藥物 Entacapone 是否影響 疾病發生率，數據如下：
-\documentclass{article}
-\begin{document}
-
 \begin{table}[h]
     \centering
     \begin{tabular}{|c|c|c|c|}
@@ -176,7 +173,5 @@ Fisher’s Exact Test 是一種 統計檢定方法，用於檢測 兩個分類�
     \caption{Fisher’s Exact Test 的 2×2 列聯表}
     \label{tab:fisher_exact}
 \end{table}
-
-\end{document}
 
 
