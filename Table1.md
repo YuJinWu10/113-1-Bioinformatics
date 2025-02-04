@@ -1,4 +1,23 @@
+---
+title: "113-1 Bioinformatics table1" ## 標題
+author: "Yu-Jin Wu"                  ## 作者
+date: "`r Sys.Date()`"               ## 日期(Sys.Date() 會自動插入當前日期)
+output:                              ## 輸出格式
+  html_document:
+    code_folding: hide               ## code_folding: hide：可折疊程式碼區塊
+    toc: yes                         ## toc: yes：加入目錄
+    toc_depth: 2                     ## toc_depth: 2：目錄顯示到第二層
+    toc_float:
+      collapsed: no                  ## toc_float:     collapsed: no：目錄不預設折疊
+      smooth_scroll: no              ##                smooth_scroll: no：關閉滑動效果
+  pdf_document:
+    toc: yes
+    toc_depth: '2'
+  word_document:
+    toc: yes
+    toc_depth: '2'
 
+---
 
 
 ## Install the required packages
