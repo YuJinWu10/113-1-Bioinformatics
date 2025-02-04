@@ -79,7 +79,8 @@ compared_group <- "Entacapone"      # 比較的變數名稱（Entacapone）
 compared_levels <- c("yes", "no")   # 該變數的兩個水平（yes/no）
 compared_labels <- c("Yes", "No")   # 顯示標籤（Yes/No）
 ```
-－ 這邊舉例的是對"Entacapone"做分組比較，分成兩組 "yes", "no" ，而我們希望它的組別以"Yes", "No"呈現
+- 這邊舉例的是對"Entacapone"做分組比較，分成兩組 "yes", "no" ，而我們希望它的組別以"Yes", "No"呈現
+  
 
 
 ### 轉換比較變數為 factor
