@@ -167,5 +167,16 @@ Fisher’s Exact Test 是一種 統計檢定方法，用於檢測 兩個分類�
 | **未使用藥物 (Entacapone = No)**  | 1 | 5 | 6 |
 | **總計** | 4 | 6 | 10 |
 
+- 我們希望知道 Entacapone 的使用是否與疾病發生有統計上的關聯。
+
+
+#### 3. 計算原理
+Fisher’s Exact Test 基於超幾何分佈（Hypergeometric Distribution），計算 觀察到這種數據的精確機率。
+
+假設 行總計與列總計固定，計算所有可能的 2×2 表格組合，並比較目前這個表格的發生機率是否顯著低。
+計算 P 值 來檢定這個組合的 極端程度。
+Fisher’s Exact Test 計算的 P 值是：
+P = \frac{\binom{a+b}{a} \binom{c+d}{c}}{\binom{n}{a+c}}
+
 
 
