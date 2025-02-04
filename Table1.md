@@ -143,3 +143,40 @@ tb1 <- colnames(data_table1) %>%
 - 計算 p-value，以便評估每個變數在兩組之間是否存在顯著的差異。
 - 我們得到的Table1上的p-value皆大於0.05，代表兩組 (Yes / No) 之間，在這些特徵（性別、年齡、抽菸情況等）上是沒有統計上的顯著差異。
 
+
+
+
+--------------------------------------
+--------------------------------------
+## 補充
+
+### Fisher’s Exact Test（費雪精確檢定）
+Fisher’s Exact Test 是一種 統計檢定方法，用於檢測 兩個分類變數是否具有統計相關性，特別適用於 小樣本 或 稀疏數據（例如某些分類組合中的觀測次數過少）。
+#### 1. 何時使用 Fisher’s Exact Test?
+當研究的數據符合以下條件時，適合使用 Fisher’s Exact Test：
+1. 分析兩個分類變數（例如：疾病 vs. 用藥情況）。
+2. 樣本量小（一般來說，當列聯表中某些格子的期望值 < 5 時，卡方檢定可能不可靠）。
+3. 資料呈現為 2×2 或較小的列聯表（contingency table）。
+相較於 卡方檢定（Chi-square Test），Fisher’s Exact Test 不需要假設樣本量足夠大，適用於小樣本數據。
+
+#### 2. 2×2 列聯表範例
+假設研究某種藥物 Entacapone 是否影響 疾病發生率，數據如下：
+\documentclass{article}
+\begin{document}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        & 有疾病 (Disease) & 無疾病 (No Disease) & 總計 \\ \hline
+        使用藥物 (Entacapone = Yes) & 3 & 1 & 4 \\ \hline
+        未使用藥物 (Entacapone = No) & 1 & 5 & 6 \\ \hline
+        總計 & 4 & 6 & 10 \\ \hline
+    \end{tabular}
+    \caption{Fisher’s Exact Test 的 2×2 列聯表}
+    \label{tab:fisher_exact}
+\end{table}
+
+\end{document}
+
+
