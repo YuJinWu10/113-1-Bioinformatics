@@ -19,7 +19,7 @@ output:                              ## 輸出格式
 
 ---
 
-
+# Install and Library the required packages
 ## Install the required packages
 ```{r}
 # install.packages(c("dplyr", "table1", "Hmisc", "Exact", "DescTools"))
@@ -28,19 +28,19 @@ output:                              ## 輸出格式
 
 ## Library the required packages
 ```{r}
-library(dplyr)
-library(table1)
-library(Hmisc)
-library(Exact)
-library(DescTools)
+library(dplyr) # 資料處理與轉換
+library(table1) # 製作 Table 1
+library(Hmisc) # 醫學統計分析（含 upData()）
+library(Exact) # Fisher’s exact test（適用於小樣本的列聯表檢定）
+library(DescTools) # 統計工具（包含 GTest()，用於卡方檢定）
 ```
 
 
 ## Import dataset 
 ```{r}
 # (Method 1)
-setwd("D:/yuyu/master/113-1/TA/113-1 Bioinformatics/Final")
-metadata <- read.table("phyloseq/weis_metadata_1210.tsv", sep = "\t", header = TRUE)
+setwd("D:/yuyu/master/113-1/TA/113-1 Bioinformatics/Final")  # setwd()：設定工作目錄
+metadata <- read.table("phyloseq/weis_metadata_1210.tsv", sep = "\t", header = TRUE)  # read.table()：讀取 TSV（Tab-Separated Values）文件，分隔符為 \t & header = TRUE：表示第一行為欄位名稱
 
 # (Method 2) 
 # metadata <- read.table("D:/yuyu/master/113-1/TA/113-1 Bioinformatics/Final/phyloseq/weis_metadata_1210.tsv", sep = "\t", header = TRUE)
@@ -53,6 +53,7 @@ metadata <- read.table("phyloseq/weis_metadata_1210.tsv", sep = "\t", header = T
 # colnames(metadata) ## What variables are in metadata
 ```
 
+### 變數標籤設定
 ```{r}
 data_table <- metadata %>%
   select(-ID) %>% ## Exclude the ID variable
@@ -69,28 +70,29 @@ data_table <- metadata %>%
 
 ```
 － 補充說明變數名稱
+-  upData()（來自 Hmisc）：為變數添加標籤（label），以利後續 table1() 顯示友善的名稱。
 
 
-## Select the variables that you want to compare
+## Select the variables that you want to compare (設定要比較的群組)
 ```{r}
-compared_group <- "Entacapone"
-compared_levels <- c("yes", "no")
-compared_labels <- c("Yes", "No")
+compared_group <- "Entacapone"      # 比較的變數名稱（Entacapone）
+compared_levels <- c("yes", "no")   # 該變數的兩個水平（yes/no）
+compared_labels <- c("Yes", "No")   # 顯示標籤（Yes/No）
 ```
-－　這邊舉例的是對"Entacapone"做分組比較，分成兩組 "yes", "no" ，而我們希望它的組別以"Yes", "No"呈現
+－ 這邊舉例的是對"Entacapone"做分組比較，分成兩組 "yes", "no" ，而我們希望它的組別以"Yes", "No"呈現
 
 
-
+### 轉換比較變數為 factor
 ```{r}
 data_table1 <- data_table
 data_table1[compared_group] <- factor(data_table1 %>% pull(eval(parse(text = compared_group))),levels = c(compared_levels,Inf),labels = c(compared_labels,"P-value"))
 data_table1 <- data_table1[!is.na(data_table1 %>% pull(eval(parse(text = compared_group)))),]
 ```
 * 為了保留原始檔以便後續確認，我們會新建一個一模一樣的檔案，以新的檔案來執行分析。
-* 在data_table1資料檔中，增加一行"compared_group"
-* 刪除NA值
+* 在data_table1資料檔中，增加一行"compared_group" (將 compared_group 轉為 factor)
+* 移除 NA 值，確保比較時不包含缺失值
 
-
+### 定義 P 值計算函數 & 定義數值變數的顯示方式
 ```{r}
 p_value <- function(x, ...) {
   #x <- x[-which(names(x) == "overall")]
@@ -115,16 +117,16 @@ my.render.cont <- function(x) {
 ```
 - 建立一個p_value函數，依數據的類型，使用不同方式得到p_value
   
-  -  數值型數據：使用wilcox.test來檢測兩組數據是否來自相同的分佈
-  -  2x2列聯表行數據：使用exact.test進行準確性檢驗
-  -  其他類型的數據：使用GTest進行似然比檢驗，並應用"Williams校正"來計算p-value
-  -  
+  -  數值型數據：使用Wilcoxon 檢定（適用於非常態分佈資料）來檢測兩組數據是否來自相同的分佈
+  -  2x2列聯表行數據(類別變數)：使用exact.test進行準確性檢驗 (Fisher’s exact test)
+  -  其他類型的數據：使用G檢定（GTest()）進行似然比檢驗，並應用"Williams校正"來計算p-value
+    
 - p-value是一個統計指標，用來評估觀察到的差異是否只由隨機變異所造成的。
   -   如果 p-value 小於 0.05，則我們可以認為這個差異具有統計顯著性，意味著兩組在這個變數上的差異並非隨機產生的，有可能是真實存在的。
   -   如果 p-value 大於 0.05，則表示該變數在兩組之間的差異不具統計顯著性。
 
 
-##  Table 1
+##  Table 1 (生成 Table 1)
 為了了解 PD 組有無服用Entacapone是否與性別、年齡、抽菸與否等等的一般特徵相關，我們比較了 PD 組中有服用Entacapone ( N  = 11) 和未服用Entacapone ( N  = 13) 患者的幾個特徵。
 ```{r}
 tb1 <- colnames(data_table1) %>%
